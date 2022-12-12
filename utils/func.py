@@ -1,10 +1,10 @@
 import pandas as pd
 
-def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
+def swap_ph_tm(train:pd.DataFrame, update_train:pd.DataFrame)-> pd.DataFrame:
     """_summary_
     Swap ph and tm values in train subset if there ref in update
     Args:
-        train (_type_): Train dataset
+        train (pd.DataFrame): Train dataset
         update_train (pd.DataFrame): Updated train
 
     Returns:
