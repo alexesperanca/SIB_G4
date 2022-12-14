@@ -60,7 +60,7 @@ class KMer_prot:
         """
         # Janela deslizante para obter os kmers de tamanho k
         return np.array(
-            sequence[i : i + self.k] for i in range(len(sequence) - self.k - 1)
+            sequence[0][i : i + self.k] for i in range(len(sequence[0]) - self.k - 1)
         )
 
     def fit(self, sequences):
@@ -89,7 +89,7 @@ class KMer_prot:
         for value in self.kmers[self.counts]:
             counts[value] += 1
         self.counts += 1
-        return np.array([counts[i] / len(seq) for i in counts])
+        return np.array([counts[i] / len(seq[0]) for i in counts])
 
     def transform(self, sequences: pd.DataFrame):
         """Transforms the dataset to get an informative value of the data
