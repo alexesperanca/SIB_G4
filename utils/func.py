@@ -1,10 +1,13 @@
 import pandas as pd
+import numpy as np
+import itertools
+from propy import PyPro
 
-def swap_ph_tm(train:pd.DataFrame, update_train:pd.DataFrame)-> pd.DataFrame:
+def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
     """_summary_
-    Swap ph and tm values in train subset if ref in update
+    Swap ph and tm values in train subset if there ref in update
     Args:
-        train (pd.DataFrame): Train dataset
+        train (_type_): Train dataset
         update_train (pd.DataFrame): Updated train
 
     Returns:
@@ -22,3 +25,21 @@ def swap_ph_tm(train:pd.DataFrame, update_train:pd.DataFrame)-> pd.DataFrame:
     train.loc[swap_ph_tm,["pH","tm"]] = update_train.loc[swap_ph_tm,["pH","tm"]]
 
     return train
+
+def CalculateDipeptideComposition(train_array:pd.DataFrame)-> np.ndarray:
+    """CalculatesDipeptideComposition for len(tran_array["protein_sequence"])
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        result = PyPro.CalculateDipeptideComposition(protein)
+        result= list(result.values())
+        final.append(result)
+        
+    final= np.array(final)
+    return final
