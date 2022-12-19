@@ -3,6 +3,7 @@ import numpy as np
 import itertools
 from propy import PyPro
 from Bio.SeqUtils import ProtParam
+from sklearn.metrics import *
 
 
 def swap_ph_tm(train, update_train: pd.DataFrame) -> pd.DataFrame:
@@ -137,3 +138,20 @@ def calculate_instability_index(train_array: pd.DataFrame) -> np.ndarray:
 
     final = np.array(final)
     return final
+
+
+def calculate_model_error(test_output: np.ndarray, prevision: np.ndarray):
+    print(
+        "Root Maximum Residual Error: %.3f"
+        % np.sqrt(max_error(test_output, prevision))
+    )
+
+    print(
+        "Root Mean Absolute Error: %.3f"
+        % np.sqrt(mean_absolute_error(test_output, prevision))
+    )
+
+    print(
+        "Root Mean Square Error: %.3f"
+        % np.sqrt(mean_squared_error(test_output, prevision))
+    )
