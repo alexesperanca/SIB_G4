@@ -1,4 +1,5 @@
 import pandas as pd
+<<<<<<< HEAD
 from collections import Counter
 from itertools import zip_longest
 from Bio import pairwise2
@@ -8,8 +9,17 @@ from Bio.pairwise2 import format_alignment
 def swap_ph_tm(train: pd.DataFrame, update_train: pd.DataFrame) -> pd.DataFrame:
     """Swap ph and tm values in train subset if ref in update
 
+=======
+import numpy as np
+import itertools
+from propy import PyPro
+
+def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
+    """_summary_
+    Swap ph and tm values in train subset if there ref in update
+>>>>>>> 64eb4726a49b29c4c4a34b6b715800ecadb15bcc
     Args:
-        train (pd.DataFrame): Train dataset
+        train (_type_): Train dataset
         update_train (pd.DataFrame): Updated train
 
     Returns:
@@ -28,6 +38,7 @@ def swap_ph_tm(train: pd.DataFrame, update_train: pd.DataFrame) -> pd.DataFrame:
 
     return train
 
+<<<<<<< HEAD
 
 def obtain_sequences_values(sequences: list) -> list:
     """Obtain Blosum64 values for each sequence with the consensus.
@@ -50,3 +61,22 @@ def obtain_sequences_values(sequences: list) -> list:
     consensus = "".join(aa for aa in common_aa_pos.values())
     for seq in sequences:
         print(pairwise2.align.globalxx(seq, consensus, score_only=True))
+=======
+def CalculateDipeptideComposition(train_array:pd.DataFrame)-> np.ndarray:
+    """CalculatesDipeptideComposition for len(tran_array["protein_sequence"])
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        result = PyPro.CalculateDipeptideComposition(protein)
+        result= list(result.values())
+        final.append(result)
+        
+    final= np.array(final)
+    return final
+>>>>>>> 64eb4726a49b29c4c4a34b6b715800ecadb15bcc
