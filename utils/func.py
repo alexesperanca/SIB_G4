@@ -1,15 +1,4 @@
 import pandas as pd
-<<<<<<< HEAD
-from collections import Counter
-from itertools import zip_longest
-from Bio import pairwise2
-from Bio.pairwise2 import format_alignment
-
-
-def swap_ph_tm(train: pd.DataFrame, update_train: pd.DataFrame) -> pd.DataFrame:
-    """Swap ph and tm values in train subset if ref in update
-
-=======
 import numpy as np
 import itertools
 from propy import PyPro
@@ -17,7 +6,6 @@ from propy import PyPro
 def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
     """_summary_
     Swap ph and tm values in train subset if there ref in update
->>>>>>> 64eb4726a49b29c4c4a34b6b715800ecadb15bcc
     Args:
         train (_type_): Train dataset
         update_train (pd.DataFrame): Updated train
@@ -38,30 +26,6 @@ def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
 
     return train
 
-<<<<<<< HEAD
-
-def obtain_sequences_values(sequences: list) -> list:
-    """Obtain Blosum64 values for each sequence with the consensus.
-
-    Args:
-        sequences (list): Sequences from dataset.
-
-    Returns:
-        list: Blosum64 scores between each sequence and the consensus.
-    """
-    zipped_aa = zip_longest(*sequences)
-    common_aa_pos = {}
-    for pos, elements in enumerate(zipped_aa):
-        counts = Counter(elements)
-        most_commons = counts.most_common(2)
-        max_aa = most_commons[0][0]
-        if not max_aa:
-            max_aa = most_commons[1][0]
-        common_aa_pos[pos] = max_aa
-    consensus = "".join(aa for aa in common_aa_pos.values())
-    for seq in sequences:
-        print(pairwise2.align.globalxx(seq, consensus, score_only=True))
-=======
 def CalculateDipeptideComposition(train_array:pd.DataFrame)-> np.ndarray:
     """CalculatesDipeptideComposition for len(tran_array["protein_sequence"])
     Args:
@@ -79,4 +43,3 @@ def CalculateDipeptideComposition(train_array:pd.DataFrame)-> np.ndarray:
         
     final= np.array(final)
     return final
->>>>>>> 64eb4726a49b29c4c4a34b6b715800ecadb15bcc
