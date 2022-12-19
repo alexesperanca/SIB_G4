@@ -1,52 +1,133 @@
 import pandas as pd
-from collections import Counter
-from itertools import zip_longest
-from Bio import pairwise2
-from Bio.pairwise2 import format_alignment
+import numpy as np
+import itertools
+from propy import PyPro
+from Bio.SeqUtils import ProtParam
 
-
-def swap_ph_tm(train: pd.DataFrame, update_train: pd.DataFrame) -> pd.DataFrame:
-    """Swap ph and tm values in train subset if ref in update
-
+def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
+    """_summary_
+    Swap ph and tm values in train subset if there ref in update
     Args:
-        train (pd.DataFrame): Train dataset
+        train (_type_): Train dataset
         update_train (pd.DataFrame): Updated train
 
     Returns:
-        pd.DataFrame: new train dataset with swapped ph and tm
+        pd.DataFrame: new train dataset with swaped ph and tm
     """
 
-    # Locate all null rows in features,
-    get_all_nanfeat = update_train.isnull().all("columns")
-    # Locate all indices in update_train
-    # Drop all indices which update train iss null
-    drop_all_indices = update_train[get_all_nanfeat].index
-    train = train.drop(index=drop_all_indices)
+    #Locate all null rows in features, 
+    get_all_nanfeat= update_train.isnull().all("columns")
+    #Locate all indices in update_train 
+    #Drop all indices which update train iss null
+    drop_all_indices= update_train[get_all_nanfeat].index
+    train= train.drop(index=drop_all_indices)
 
     swap_ph_tm = update_train[~get_all_nanfeat].index
-    train.loc[swap_ph_tm, ["pH", "tm"]] = update_train.loc[swap_ph_tm, ["pH", "tm"]]
+    train.loc[swap_ph_tm,["pH","tm"]] = update_train.loc[swap_ph_tm,["pH","tm"]]
 
     return train
 
-
-def obtain_sequences_values(sequences: list) -> list:
-    """Obtain Blosum64 values for each sequence with the consensus.
-
+def CalculateDipeptideComposition(train_array:pd.DataFrame)-> np.ndarray:
+    """CalculatesDipeptideComposition for len(tran_array["protein_sequence"])
     Args:
-        sequences (list): Sequences from dataset.
+        train_array (pd.DataFrame): _description_
 
     Returns:
-        list: Blosum64 scores between each sequence and the consensus.
+        np.ndarray: _description_
     """
-    zipped_aa = zip_longest(*sequences)
-    common_aa_pos = {}
-    for pos, elements in enumerate(zipped_aa):
-        counts = Counter(elements)
-        most_commons = counts.most_common(2)
-        max_aa = most_commons[0][0]
-        if not max_aa:
-            max_aa = most_commons[1][0]
-        common_aa_pos[pos] = max_aa
-    consensus = "".join(aa for aa in common_aa_pos.values())
-    for seq in sequences:
-        print(pairwise2.align.globalxx(seq, consensus, score_only=True))
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        result = PyPro.CalculateDipeptideComposition(protein)
+        final.append(result)
+        
+    return final
+
+def _do_analysis(protein):
+    """Generates an analysis with Biopython ProtParam
+    Args:
+        protein (_type_): _description_
+    """
+    Biop_analysis = ProtParam.ProteinAnalysis(protein)
+    return Biop_analysis
+
+
+def Calculate_molecular_weight(train_array:pd.DataFrame)-> np.ndarray:
+    """_summary_
+
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        Biop_analysis= _do_analysis(protein)
+        molecular_weight = Biop_analysis.molecular_weight()
+        final.append(molecular_weight)
+        
+    final= np.array(final)
+    return final
+
+def Calculate_isoelectric_point(train_array:pd.DataFrame)-> np.ndarray:
+    """_summary_
+
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        Biop_analysis= _do_analysis(protein)
+        isoelectric_point= Biop_analysis.isoelectric_point()
+        final.append(isoelectric_point)
+        
+    final= np.array(final)
+    return final
+
+def Calculate_aromaticity(train_array:pd.DataFrame)-> np.ndarray:
+    """_summary_
+
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        Biop_analysis= _do_analysis(protein)
+        aromaticity= Biop_analysis.aromaticity()
+        final.append(aromaticity)
+        
+    final= np.array(final)
+    return final
+
+def Calculate_instability_index(train_array:pd.DataFrame)-> np.ndarray:
+    """_summary_
+
+    Args:
+        train_array (pd.DataFrame): _description_
+
+    Returns:
+        np.ndarray: _description_
+    """
+
+    final=[]
+    for i in train_array:
+        protein= "".join(i)
+        Biop_analysis= _do_analysis(protein)
+        instability_index= Biop_analysis.instability_index()
+        final.append(instability_index)
+        
+    final= np.array(final)
+    return final

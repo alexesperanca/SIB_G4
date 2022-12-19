@@ -6,7 +6,6 @@ import itertools
 class KMer_prot:
     def __init__(self, size: int = 3):
         """Divide dna or rna into substrings of size "size"
-
         Args:
             size (int, optional): size of each substring
         """
@@ -17,11 +16,9 @@ class KMer_prot:
 
     def _get_all_combinations(self):
         """Gets the kmers
-
         Args:
             sequence (list): return a list within a list [["ACTGACATCTACT"]]
             IMPORTANT! USE [0] TO GET STRING!
-
         Returns:
             KMERs(np.array): Return a np.array with all kmers of all sequences [[kmer1],[kmer2],[kmer3]....]
         """
@@ -65,13 +62,10 @@ class KMer_prot:
 
     def fit(self, sequences):
         """Does the fit
-
         Args:
             sequences (pd.DataFrame): Gets a dataset of nucleotides
-
         Returns:
             returns self
-
         """
         self.kmers = np.apply_along_axis(self._get_kmers, axis=1, arr=sequences)
         self.fite = True
@@ -79,7 +73,6 @@ class KMer_prot:
 
     def _get_frq(self, seq):
         """Gets the counts for each count that appears in the sequence
-
         Args:
             seq (list): return a list within a list [["MGC...."]]
             IMPORTANT! USE [0] TO GET STRING!
@@ -93,7 +86,6 @@ class KMer_prot:
 
     def transform(self, sequences: pd.DataFrame):
         """Transforms the dataset to get an informative value of the data
-
         Args:
             sequences (pd.DataFrame): amino acid dataset
         """
@@ -105,10 +97,8 @@ class KMer_prot:
 
     def fit_transform(self, sequences: list):
         """Does fit and transform
-
         Args:
             sequences (pd.DataFrame): amino acid dataset
-
         Returns:
             _type_: Return the new dataset
         """
