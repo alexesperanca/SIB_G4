@@ -1,6 +1,10 @@
-# Notebook Monica
+# Notebook Versão Monica
 
-# Table of contents
+# Data Analysis using Machine Learning
+
+This project consists in the analysis of dataset, through the use of machine learning algorithms, using Python as a programming language. This Jupyter Notebook is organized into sections, which include the steps of the analysis performed and explain very succinctly the procedures performed and decisions taken during the analysis.
+
+## Table of contents
 
 1. [Introduction](#chapter1)
     1. [About Us](#section1_1)
@@ -14,10 +18,6 @@
 4. [Machine Learning](#chapter4)
 5. [Deep Learning ](#chapter5)
 6. [Conclusions](#chapter6)
-
-# Data Analysis using Machine Learning
-
-This project consists in the analysis of dataset, through the use of machine learning algorithms, using Python as a programming language. This Jupyter Notebook is organized into sections, which include the steps of the analysis performed and explain very succinctly the procedures performed and decisions taken during the analysis.
 
 <a class="anchor" id="chapter1"></a>
 
