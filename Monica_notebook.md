@@ -3,6 +3,9 @@
 # Table of contents
 
 1. [Introduction](#chapter1)
+    1. [About Us](#section1_1)
+    2. [Data Selection and Context of this Project](#section1_2)
+    3. [Credits](#section1_3)
 2. [Initial Data Exploration and Preprocessing](#chapter2)
     1. [Importing Packages](#section2_1)
     2. [Importing datasets](#section2_2)
@@ -20,7 +23,20 @@ This project consists in the analysis of dataset, through the use of machine lea
 
 ## 1. Introduction
 
-**Data Selection and Context of this Project** 
+<a class="anchor" id="section1_1"></a>
+
+### 1.1 About Us
+
+This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023).
+
+This project was developed by the following elements:
+- Alexandre Miguel Magalhães Esperança - pg45963
+- André Filipe Pereira da Silva - pg45462
+- Mónica Rafaela Machado Leiras - pg45473
+
+<a class="anchor" id="section1_2"></a>
+
+### 1.2 Data Selection and Context of this Project
 
 For the execution of this project, the dataset of the "Novozymes Enzyme Stability Prediction" Competition on the Kaggle platform was selected. You can view the [Competition and Corresponding Data here](https://www.kaggle.com/competitions/novozymes-enzyme-stability-prediction/data).
 
@@ -46,6 +62,12 @@ Para esta competição foram dado vários ficheiros para o dessenvolvimento dest
 - `sample_submission.csv`: um ficheiro de amostra de submissão, com a formatação correta em que o `seq_id` corresponde aos mesmos do ficheiro `test.csv`.
 
 - `wildtype_structure_prediction_af2.pdb`: ficheiro que contém informação sobre a estrutura 3D da enzima, prevista por AlphaFold.
+
+<a class="anchor" id="section1_3"></a>
+
+### 1.3 Credits
+
+**NOTA: adicionar aqui ou no fim os repositorios a que devemos creditos?**
 
 <a class="anchor" id="chapter2"></a>
 
@@ -527,7 +549,7 @@ plt.show()
 
 
     
-![png](Monica_notebook_files/Monica_notebook_27_0.png)
+![png](Monica_notebook_files/Monica_notebook_31_0.png)
     
 
 
@@ -760,7 +782,7 @@ plt.show()
 
 
     
-![png](Monica_notebook_files/Monica_notebook_41_0.png)
+![png](Monica_notebook_files/Monica_notebook_45_0.png)
     
 
 
