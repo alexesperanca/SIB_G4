@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import itertools
-from propy import PyPro
+from propy import *
 from Bio.SeqUtils import ProtParam
 
 def swap_ph_tm(train, update_train:pd.DataFrame)-> pd.DataFrame:
