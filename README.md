@@ -42,7 +42,7 @@ This project was developed by the following people:
 * André Filipe Pereira da Silva - pg45462
 * Mónica Rafaela Machado Leiras - pg45473
 
-The code for this project can be found in [this repository](https://github.com/alexesperanca/SIB_G4/tree/main).
+The code for this project can be found in [this repository](https://github.com/alexesperanca/SIB_G4/tree/main), in [this jupyter notebook](https://github.com/alexesperanca/SIB_G4/blob/main/Notebook_G4_final.ipynb).
 
 <a class="anchor" id="section1_2"></a>
 
@@ -102,14 +102,14 @@ This step corresponds to the following objectives:
 ### 2.1 Importing Required Packages
 
 First, we imported the necessary packages. 
-This can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C13).
+This can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C14:L2).
 
 
 <a class="anchor" id="section2_2"></a>
 
 ### 2.2 Importing datasets
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C24:L2).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C16:L1).
 
 To execute this project, we imported the train dataset named `train.csv`, and also the test dataset `test.csv` that we named `validation`.
 
@@ -232,7 +232,7 @@ validation.head()
 ### 2.3 Exploring the data
 
 In this step, we explored the data available.
-This can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C27).
+This can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C20:L2).
 
 We observed that:
 
@@ -248,7 +248,7 @@ We observed that:
 
 #### Data sources
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C33).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C25:L1).
 
 We observed that 78% of the dataset corresponds to one unique data source.  
 
@@ -257,20 +257,20 @@ So, it was decided to drop this column from the dataset (presented further ahead
 
 #### Swap pH e tm (to correct data)
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C41).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C34:L1).
 
 Here it was possible to verify that the `pH` variable has errors in the `train` dataset since its maximum is 64.9 (impossible pH value to obtain). According to the [source of the competition](https://www.kaggle.com/competitions/novozymes-enzyme-stability-prediction/discussion/356251), the variable `pH` and `tm` has some samples with the values swapped. Thus, it was necessary to change these values in the identified sequences (dataset `train_updates`).
 
 #### Drop NA Values
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C45).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C37:L3).
 
 As said above, the column `data_source` will be eliminated from the dataset, as well as the rest of the samples with null values.
 
 
 #### Summary
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C51).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C43:L2).
 
 
 Protein length distribution:
@@ -345,7 +345,7 @@ train.describe()
 
 ### 2.4 Protein Descriptors
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C60).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C50).
 
 As we only have two features to work within the ML step, and one of them is the protein sequence, we need to extract from these sequences a set of descriptors.
 
@@ -440,7 +440,7 @@ train_dataset.sample()
 
 ### 2.5 Embedding
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C70).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C61).
 
 An embedding is a relatively low-dimensional space that can be translated into high-dimensional vectors. This type of preprocessing make it easier to do machine learning on large inputs like sparse vectors representing protein sequences.
 
@@ -569,7 +569,7 @@ embeddings.sample()
 
 ### 2.6 Preprocessing
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C75).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C66).
 
 Here, the `protein_sequence` column has been deleted, since it is a qualitative variable and cannot be used for data preprocessing. The `tm` column was also removed because it is the target variable that we want to predict in the following analysis.
 
@@ -585,7 +585,7 @@ For this division, a permutation of the data was performed so that the data have
 
 ## 3. Non-Supervised Analysis
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C83).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C80).
 
 Unsupervised machine learning is a type of ML where we don't give any labels to the model. Instead, the model is only given input data and must find patterns or relationships in the data on its own. 
 
@@ -617,14 +617,14 @@ In both cases, PCA doesn't return a significantly explained variance. In each ca
 We can conclude that PCA is not effective.
 
 
-PCA results can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C85).
+PCA results can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C83:L1).
 
 
 <a class="anchor" id="section3_2"></a>
 
 ### 3.2 Kmeans
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C92).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C89).
 
 K-Means is an unsupervised machine learning algorithm used to group data into clusters based on similarities.
 The goal of K-means is to partition a dataset into a specified number of clusters (k) in a way that minimizes the within-cluster sum of squares. Here we present the following steps to run this algorithm:
@@ -646,7 +646,7 @@ As we can see, the graph shows at the top a high inertia, meaning a high sum of 
 
 ### t-SNE
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C100).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C97:L1).
 
 t-SNE (t-Distributed Stochastic Neighbor Embedding) is used to project high-dimensional data into a lower-dimensional space, typically 2 or 3 dimensions. The goal is to preserve the pairwise distances between the data points in the lower-dimensional space as much as possible.
 
@@ -676,7 +676,7 @@ Supervised Machine Learning has the distinct characteristic of being trained on 
 
 ### 4.1 Regression Analysis
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C107).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C104).
 
 The algorithm, through the recognition of patterns in the training data, will provide predictions in new unseen data. 
 
@@ -728,7 +728,7 @@ Despite several attempts to run the Support Vector Regression model, it eventual
 
 ### 4.2. Binary Analysis
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C116).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C114:L1).
 
 In this section, we predicted the stability of a protein sequence. Protein sequences are stable if the Tm of a protein sequence is above 65◦C (Tm > 65◦C). Thus, a binary prediction through Logistic Regression will inform us of the relevant stable protein sequences. [Source Article here.](https://doi.org/10.1016/j.compbiolchem.2009.10.002)
 
@@ -752,7 +752,7 @@ We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relati
 
 ## 5. Deep Learning
 
-This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C127).
+This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/7c6786cc83a7f1f3a5c26ec2805aafb192f6cb7f/Notebook_G4_final.ipynb#C126:L3).
 
 Using deep learning methods similar to chapter 4, comparing the results.
 
