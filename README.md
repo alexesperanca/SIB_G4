@@ -35,13 +35,14 @@ This project consists of the analysis of the dataset, through the use of machine
 ### 1.1 About Us
 
 
-This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023). You can see our [GitHub repository here](https://github.com/alexesperanca/SIB_G4/tree/main).
+This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023).
 
 This project was developed by the following people:
 * Alexandre Miguel Magalhães Esperança - pg45963
 * André Filipe Pereira da Silva - pg45462
 * Mónica Rafaela Machado Leiras - pg45473
 
+The code for this project can be found in [this repository](https://github.com/alexesperanca/SIB_G4/tree/main).
 
 <a class="anchor" id="section1_2"></a>
 
@@ -632,7 +633,7 @@ The goal of K-means is to partition a dataset into a specified number of cluster
 2. Data point assigned to the cluster corresponding to the nearest centroid
 3. The centroids are then updated to be the mean of the points in their respective clusters
 
-This process is repeated until the centroids no longer change, or a maximum number of iterations is reached (In this case we set a maximum number of iterations)
+This process is repeated until the centroids no longer change, or a maximum number of iterations is reached (In this case we set a maximum number of iterations).
 
 
 ![png](G4_final_files/G4_final_96_0.png)
@@ -783,9 +784,23 @@ print("conv1D rmse:", mean_squared_error(test_output, y_pred,squared=False))
 
 Our LSTM model was the worst, giving a mse of 147. For the LSTM we stopped trying to improve this model for computation reasons, as it was taking 10+ hours to run, and the initial results of the model were the worst. 
 
-Herewith, Deeplearning demonstrated better results than Unsupervised and Supervised ML, but far from desired.
+Herewith, Deeplearning demonstrated better results than Unsupervised and Supervised ML, but far from desired.Conv1d was the best model from all our analyses, having a rmse of 7.94.
 
-**Conv1d was the best model from all our analyses, having a rmse of 7.94**.
+<a class="anchor" id="chapter6"></a>
 
+## 6. Conclusions
 
+This work can be summarized in 3 main sections: unsupervised analysis, supervised analysis, and deep learning.
 
+The **unsupervised analysis** consisted of a dimensionality reduction through PCA, clustering through K-means, and t-SNE.
+Only in the t-SNE analysis was it possible to observe some clusters based on the thermostability of the proteins, while PCA and K-means did not have conclusive results.
+
+The **supervised analysis - ML** consisted of regression analysis and binary analysis.
+In the regression analysis, several models were tested ("Linear Regression", "KNN", "Bagging", "Random Forest", "Decision Tree") and the effectiveness of these models was calculated using the RMSE metric (Root Mean Squared Error). The best model in this analysis was a Random Forest with an RMSE value of 8388.
+In the binary analysis, a parameter was added to adjust the data unbalance and an accuracy of 67.835% was obtained. With more balanced data, this analysis would have been more successful.
+
+The **deep learning** analysis consisted of the use of 3 models: FF (Feed Forward Neural Network), Conv1D (Convolution Neural Network), and LSTM (Long-Short Term Memory). However, the latter was giving runtime errors and so it was only possible to obtain a mse value (obtained in an analysis carried out weeks before), which, compared with the mse values of the other models, the LSTM was the worst (mse: 147).
+As for the FF model, it obtained a worse value than conv1D and all models of the supervised ML analysis, with a rmse of 11,819.
+The conv1D model had the best value in the entire analysis, with a rmse of 7.94.
+
+That said, we can conclude that the best model of this project to predict the thermostability of enzymes was obtained in the deep learning analysis: **conv1D model**.
