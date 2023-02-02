@@ -5,7 +5,8 @@ from sklearn import linear_model
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.svm import SVR
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import BaggingRegressor
 
@@ -31,14 +32,14 @@ class SupervisedModelOptimization:
             print("No assigned test data, splitting the inputted train data")
             (
                 self.train_input,
-                self.train_output,
                 self.test_input,
+                self.train_output,
                 self.test_output,
             ) = self._split_data(train_input, train_output)
         else:
             self.train_input = train_input
-            self.train_output = train_output
             self.test_input = test_input
+            self.train_output = train_output
             self.test_output = test_output
 
         # Attributes
@@ -88,7 +89,7 @@ class SupervisedModelOptimization:
             print("=" * 100)
 
     def _split_data(
-        self, input: np.ndarray, output: np.ndarray, division_rate: int = 0.3
+        self, input: np.ndarray, output: np.ndarray, division_rate: int = 0.3, random_state: int = 42
     ):
         """Method to split the data according to the input and output samples. The division rate may be altered and is predefined as 30% will be considered as testing data.
 
@@ -96,37 +97,28 @@ class SupervisedModelOptimization:
             input (np.ndarray): Input samples.
             output (np.ndarray): Input data.
             division_rate (int, optional): Division rate to obtain the test data. Defaults to 0.3.
+            random_state (int, optional): Number for reproducible output across multiple function calls. Defaults to 42.
 
         Returns:
             tuple[np.ndarray]: Tuple with each of the divided data.
         """
-        num_test = int(input.shape[0] * division_rate)
-        indices = np.random.permutation(len(input))
-
-        # Get the Input data pre-processed according with the indexes
-        train_input = input[indices[:-num_test]]
-        test_input = input[indices[-num_test:]]
-
-        # Get the output data according with the indexes
-        train_output = output[indices[:-num_test]]
-        test_output = output[indices[-num_test:]]
-
-        return train_input, train_output, test_input, test_output
+        return train_test_split(input, output, test_size=division_rate, random_state=random_state)
 
     def fit_model(
-        self, method="Linear Regression", cross_val: int = 5
+        self, method="Linear Regression", cross_val: int = 5, n_iter: int = 10, error_metric: str = "neg_mean_squared_error"
     ) -> "SupervisedModelOptimization":
         """Model fit of the chosen one by tuning the best possible hyperparameters in a regression problem. If no several parameters introduced, we fit the respective model.
 
         Args:
             chosen_model (str, optional): Model chosen to perform the data predictions. Defaults to "Linear Regression".
             cross_val (int, optional):  Cross-validation splitting value. Defaults to 5.
+            n_iter (int, optional):  Number of iterations to run the RandomizedSearchCV. Defaults to 10.
+            error_metric (str, optional):  Error metric to evaluate the model performance. Defaults to "neg_mean_squared_error".
 
         Returns:
             SupervisedModelOptimization: Fitted model.
         """
         if method == "Linear Regression":
-            # FIXME: No need for params, remove from here due to the GridSearchCV?
             model_estimator = linear_model.LinearRegression()
             params = None
         elif method == "KNN":
@@ -140,22 +132,18 @@ class SupervisedModelOptimization:
             ]
         elif method == "Decision Tree":
             model_estimator = DecisionTreeRegressor()
-            # FIXME: Not sure if more criterion should be added
             params = {
                 "criterion": ["squared_error", "absolute_error"],
-                "max_depth": [4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 30, 40, 50, 70, 90, 120, 150],
+                "max_depth": [5, 10, 20],
                 "splitter": ["random", "best"],
             }
         elif method == "SVM":
             model_estimator = SVR(kernel="linear")
-            # Linear probably the best kernel, since I presume the relations of the data are linear
-            # FIXME: Ensure if the other kernels should be here
-            # params = [{"C": [1, 10, 100, 1000], "gamma": [0.001, 0.0001]}]
-            params = [{"C": [1, 10], "gamma": [0.001]}]
+            # Linear probably the best kernel, since it is presumed the relations of the data are linear
+            params = [{"C": [1, 10, 20], "gamma": [0.001, 0.0001]}]
         elif method == "Random Forest":
             model_estimator = RandomForestRegressor()
-            # FIXME: Not sure if more criterion should be added
-            params = [{'n_estimators': [10, 20, 40, 60, 100], 'criterion': ["squared_error", "absolute_error"], 'max_depth':[5,10,20,45,75,100,150]}]
+            params = [{'n_estimators': [5, 10, 20], 'criterion': ["squared_error", "absolute_error"], 'max_depth':[5, 10, 20]}]
         elif method == "Bagging":
             # Define the base regressor
             base_regressor = DecisionTreeRegressor(random_state=42)
@@ -173,12 +161,15 @@ class SupervisedModelOptimization:
             return self
 
         # If multiple parameters, we use GridSearchCV for hyper-parameter tuning
-        self.model = GridSearchCV(
+        self.model = RandomizedSearchCV(
             estimator=model_estimator,
-            param_grid=params,
-            scoring="neg_mean_squared_error",
+            param_distributions=params,
+            n_iter=n_iter,
+            scoring=error_metric,
             cv=cross_val,
+            random_state=42
         )
+
         self.model.fit(self.train_input, self.train_output)
 
         # Return own class instance to allow method chaining

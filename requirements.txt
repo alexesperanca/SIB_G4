@@ -1,7 +1,9 @@
-numpy
 pandas
-itertools
-propy
-biopython
+numpy
 matplotlib
+propy
+sklearn
 sgt
+keras
+itertools
+biopython
