@@ -35,7 +35,7 @@ This project consists in the analysis of dataset, through the use of machine lea
 ### 1.1 About Us
 
 
-This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023).
+This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023). You can see our [GitHub repository here](https://github.com/alexesperanca/SIB_G4/tree/main).
 
 This project was developed by the following elements:
 * Alexandre Miguel Magalhães Esperança - pg45963
