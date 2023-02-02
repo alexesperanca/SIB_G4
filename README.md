@@ -796,11 +796,11 @@ The **unsupervised analysis** consisted of a dimensionality reduction through PC
 Only in the t-SNE analysis was it possible to observe some clusters based on the thermostability of the proteins, while PCA and K-means did not have conclusive results.
 
 The **supervised analysis - ML** consisted of regression analysis and binary analysis.
-In the regression analysis, several models were tested ("Linear Regression", "KNN", "Bagging", "Random Forest", "Decision Tree") and the effectiveness of these models was calculated using the RMSE metric (Root Mean Squared Error). The best model in this analysis was a Random Forest with an RMSE value of 8388.
+In the regression analysis, several models were tested ("Linear Regression", "KNN", "Bagging", "Random Forest", "Decision Tree") and the effectiveness of these models was calculated using the RMSE metric (Root Mean Squared Error). The best model in this analysis was a Random Forest with an RMSE value of 8.388.
 In the binary analysis, a parameter was added to adjust the data unbalance and an accuracy of 67.835% was obtained. With more balanced data, this analysis would have been more successful.
 
 The **deep learning** analysis consisted of the use of 3 models: FF (Feed Forward Neural Network), Conv1D (Convolution Neural Network), and LSTM (Long-Short Term Memory). However, the latter was giving runtime errors and so it was only possible to obtain a mse value (obtained in an analysis carried out weeks before), which, compared with the mse values of the other models, the LSTM was the worst (mse: 147).
-As for the FF model, it obtained a worse value than conv1D and all models of the supervised ML analysis, with a rmse of 11,819.
+As for the FF model, it obtained a worse value than conv1D and all models of the supervised ML analysis, with a rmse of 11.819.
 The conv1D model had the best value in the entire analysis, with a rmse of 7.94.
 
 That said, we can conclude that the best model of this project to predict the thermostability of enzymes was obtained in the deep learning analysis: **conv1D model**.
