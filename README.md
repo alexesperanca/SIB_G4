@@ -754,3 +754,39 @@ We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relati
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C127).
 
+Using deep learning methods similarly to chapter 4, comparing the results.
+
+We created 3 deep learning models: FF (Feed Forward Neural Network), Conv1D (Convolution Neural Network) and LSTM (Long-Short Term Memory).
+
+To setup our models, we added droupout layers/bathnormalization to avoid overfit problems. Then, we also used an earlystopping to stop our seach when our loss stayed the same.
+
+We verified the Root Mean Squared Error (RMSE) of  the best fully connected FFNN model.
+
+```python
+print("Best parameters: ", random_search_ff.best_params_)
+print("FF rmse:", mean_squared_error(test_output, y_pred,squared=False))
+```
+
+    Best parameters: {'units': 128, 'activation': 'relu'}
+    FF rmse: 11.819
+
+
+We verified the Root Mean Squared Error (RMSE) of  the best fully connected conv1D model.
+
+```python
+print("Best parameters: ", history.best_params_)
+print("conv1D rmse:", mean_squared_error(test_output, y_pred,squared=False))
+```
+
+    Best parameters: {'layers': 3, 'kernel_size': 5, 'filters': 32, 'activation': 'relu'}.
+    conv1D rmse: 7.94
+     
+
+Our LSTM model was the worst, giving a mse of 147. For the LSTM we stoped trying to improve this model for computation reasons, as it was taking 10+ hours to run, and the initial results of the model were the worst. 
+
+Herewith, Deeplearning demonstrated better results than Unsupervised and Supervised ML, but far from desired.
+
+**Conv1d was the best model from all our analysis, having a rmse of 7.94**.
+
+
+
