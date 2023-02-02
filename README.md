@@ -695,37 +695,36 @@ The models fit a list of models and then predicted with `test` dataset, calculat
 ```python
 for model, values in model_scores.items():
   predictions, score = values
-  print(f"{model} obtained the following Mean Squared Error:\n\t{score}\n")
+  print(f"{model} obtained the following Root Mean Squared Error:\n\t{score}\n")
 ```
 
-    Linear Regression obtained the following Mean Squared Error:
-    	86.89232225984802
-    
-    KNN obtained the following Mean Squared Error:
-    	80.75131050482923
-    
-    Bagging obtained the following Mean Squared Error:
-    	86.16092449420108
-    
-    Random Forest obtained the following Mean Squared Error:
-    	80.29840299718742
-    
-    Decision Tree obtained the following Mean Squared Error:
-    	113.15933575996907
+    Linear Regression obtained the following Root Mean Squared Error:
+      9.321605133229363
+
+    KNN obtained the following Root Mean Squared Error:
+      8.44592552570935
+
+    Bagging obtained the following Root Mean Squared Error:
+      8.892788154375804
+
+    Random Forest obtained the following Root Mean Squared Error:
+      8.387996591333751
+
+    Decision Tree obtained the following Root Mean Squared Error:
+      10.317757538697911
     
 
-We verify that the Mean Squared Error (MSE) remained between 80 and 90 except for the Decision Tree Regressor, resulting in a 113 value error. 
+We verify that the Root Mean Squared Error (RMSE) remained between 8 and 10 except for the Decision Tree Regressor, resulting in a 10.31 value error. 
 
-Herewith, Supervised Machine Learning demonstrated better results than Unsupervised, but far from desired. Random Forest is the best model due to having the lowest MSE (80.298), using the following parameters:
+Herewith, Supervised Machine Learning demonstrated better results than Unsupervised, but far from desired. Random Forest (RF) is the best model due to having the lowest RMSE (8.388), using the following parameters:  
     
-    {n_estimators: 20, max_depth: 20, criterion: squared_error}.
+    {'n_estimators': 100, 'max_depth': 50}.
 
-It corresponds to the maximum number of estimators and depth attributed. Therefore, model improvement may occur with increased values in these parameters. However, the processing time increases immensely with the increased parameter values.
+It corresponds to the maximum number of estimators and depth attributed. Therefore, model improvement may occur with increased values in these parameters. However, the processing time increases immensely with the increased parameter values, being the error reduction not significant.
 
-A possible way for better results may be increasing the cross-validation value, which remained at a value of 2, to reduce the processing model time.
+In the first analysis, the cross-validation value remained at a value of 2 to reduce at max the training time. With this, RF exhibited an RMSE value of 8.400. The number of cross-validations was increased to 5 and obtained a value of 8.388, indicating little to no improvement.
 
 Despite several attempts to run the Support Vector Regression model, it eventually got removed from the equation owing to running endlessly.
-
 
 ### 4.2. Binary Analysis
 
@@ -733,8 +732,20 @@ This step can be observed in [this cell of the notebook](https://vscode.dev/gith
 
 In this section, we predicted the stability of a protein sequence. Protein sequences are stable if the Tm of a protein sequence is above 65◦C (Tm > 65◦C). Thus, a binary prediction through Logistic Regression will inform us of the relevant stable protein sequences. [Source Article here.](https://doi.org/10.1016/j.compbiolchem.2009.10.002)
 
-We achieved an accuracy score of 93.3% and a Mean Squared Error (MSE) metric value of 0.258. Therefore, we can conclude that our protein stability prediction model has high fidelity for the prediction of whether or not a protein may be considered stable.
 
+    Occurrences of each value in train output values:
+    {0.0: 17487, 1.0: 2599}
+
+    Occurrences of each value in test output values:
+    {0.0: 7566, 1.0: 1043}
+
+Due to the unbalanced data verified by the output occurrences, we added the parameter "class_weight" to the LogisticRegression model to adjust the training data. The value for the ratio used is 6 to 1.
+
+    First 10 Predictions: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+    Accuracy Score: 67.83496030711143
+
+
+We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relatively positive protein stability prediction accuracy from our model. Our biggest issue are the unbalanced data, which the parameter "class_weight" tries to overcome. However, a more balanced data may result in better predictions.
 
 
 <a class="anchor" id="chapter5"></a>
@@ -743,8 +754,3 @@ We achieved an accuracy score of 93.3% and a Mean Squared Error (MSE) metric val
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C127).
 
-
-Pessoal, estava a tentar fazer link para as celulas em especifico de cada secção do notebook mas não estou a encontrar nada que possa fazer isso (no github pelo menos). No entanto, acho que o readme deste género (https://github.com/alexesperanca/SIB_G4/blob/monica/read_me_wip.md) fica fixe e se o professor quiser ver o codigo, faz download do notebook e o indice também dá localmente  e tem tudo (no github é que não).
-
-Quando tiver tudo corrido, avisem que depois posso ter de substituir alguns resultados ou texto que aparece no readme.
-Ainda não coloquei a parte do deep learning, mas quando tiver corrido é só adicionar os resultados como na parte supervisionada.
