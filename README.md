@@ -1,6 +1,6 @@
 # Data Analysis using Machine Learning
 
-This project consists in the analysis of dataset, through the use of machine learning algorithms, using Python as a programming language. This Jupyter Notebook is organized into sections, which include the steps of the analysis performed and explain very succinctly the procedures performed and decisions taken during the analysis.
+This project consists of the analysis of the dataset, through the use of machine learning algorithms, using Python as a programming language. This Jupyter Notebook is organized into sections, which include the steps of the analysis performed and explain very succinctly the procedures performed and decisions taken during the analysis.
 
 ## Table of contents
 
@@ -37,7 +37,7 @@ This project consists in the analysis of dataset, through the use of machine lea
 
 This project is part of the subject `Sistemas Inteligentes para a Bioinformática` in the Master in Bioinformatics (University of Minho - 2022/2023). You can see our [GitHub repository here](https://github.com/alexesperanca/SIB_G4/tree/main).
 
-This project was developed by the following elements:
+This project was developed by the following people:
 * Alexandre Miguel Magalhães Esperança - pg45963
 * André Filipe Pereira da Silva - pg45462
 * Mónica Rafaela Machado Leiras - pg45473
@@ -235,11 +235,11 @@ This can be observed in [this cell of the notebook](https://vscode.dev/github/al
 
 We observed that:
 
-- `train` data is divided in 31390 samples and 4 features, corresponding to ~93% of total samples.
-- `validation` data is divided in 2413 samples and 3 features, corresponding to ~7% of total samples.
+- `train` data is divided into 31390 samples and 4 features, corresponding to ~93% of total samples.
+- `validation` data is divided into 2413 samples and 3 features, corresponding to ~7% of total samples.
 - Labels for `train`: ['protein_sequence', 'pH', 'data_source', 'tm']
 - the `validation` dataset corresponds to the test dataset for the competition scoring, so it misses the `tm` feature (the variable to be predicted).
-- the `data_source` variable is not nominal, so we can't more information about this feature.
+- the `data_source` variable is not nominal, so we can't have more information about this feature.
 - the `pH` variable on the `train` dataset has a maximum value of 64.9.
 - the `pH` variable on the `train` dataset has 31104 samples, while `tm` has 31390 (which is the total number of samples of that dataset).
 - the `pH` variable on the `validation` dataset has all the samples with the same value of 8. 
@@ -258,7 +258,7 @@ So, it was decided to drop this column from the dataset (presented further ahead
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C41).
 
-Here it was possible to verify that the `pH` variable has errors in the `train` dataset, since its maximum is 64.9 (impossible pH value to obtain). According to the [source of the competition](https://www.kaggle.com/competitions/novozymes-enzyme-stability-prediction/discussion/356251), the variable `pH` and `tm` has some samples with the values swapped. Thus, it was necessary to change these values in the identified sequences (dataset `train_updates`).
+Here it was possible to verify that the `pH` variable has errors in the `train` dataset since its maximum is 64.9 (impossible pH value to obtain). According to the [source of the competition](https://www.kaggle.com/competitions/novozymes-enzyme-stability-prediction/discussion/356251), the variable `pH` and `tm` has some samples with the values swapped. Thus, it was necessary to change these values in the identified sequences (dataset `train_updates`).
 
 #### Drop NA Values
 
@@ -272,7 +272,7 @@ As said above, the column `data_source` will be eliminated from the dataset, as 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C51).
 
 
-Protein lenght distribution:
+Protein length distribution:
 
 ![png](G4_final_files/G4_final_52_0.png)
 
@@ -334,10 +334,10 @@ train.describe()
 </table>
 
 
-- the `train` dataset without null values has a total of 28695 samples and only 3 features: `protein_sequence`, `pH` and `tm`.
+- the `train` dataset without null values has a total of 28695 samples and only 3 features: `protein_sequence`, `pH`, and `tm`.
 - the `pH` feature has values between 1.9 and 11 but, the majority of samples have a pH value of 7.
 - the `tm` feature has values between 25 and 130, but 50% of samples have a smaller range: 44-55.
-- the `protein_sequence` samples have a large range of lenghts (between 5 and 8798), but 50% of samples have lenghts between 210 and 537). The mean lenght of the 28695 sequences is 451.
+- the `protein_sequence` samples have a large range of lengths (between 5 and 8798), but 50% of samples have lengths between 210 and 537). The mean length of the 28695 sequences is 451.
 - to use some machine learning techniques it is needed to transform the feature `protein_sequence` into descriptors (multiple features). 
 
 <a class="anchor" id="section2_4"></a>
@@ -346,13 +346,13 @@ train.describe()
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C60).
 
-As we only have two features to work with in the ML step, and one of them is the protein sequence, we need to extract from these sequences a set of descriptors.
+As we only have two features to work within the ML step, and one of them is the protein sequence, we need to extract from these sequences a set of descriptors.
 
 Protein descriptors are quantitative measures that characterize various properties of a protein, such as its structure, stability, or function.
 
 Here is a set of examples for these descriptors:
 
-*   Sequence lenght (1 feature)
+*   Sequence length (1 feature)
 *   Amonoacid composition (20 features)
 *   dipeptide composition (400 features)
 *   tripeptide composition (8000 features)
@@ -364,13 +364,13 @@ Here is a set of examples for these descriptors:
 The only useful variable for this stage is the `protein_sequence`.
 With this data, functions based on the `propy` and `biopython` packages were used:
 - `calculate_dipeptide_composition`: DPC - dipeptide composition descriptors (400) for each protein. [propy package](https://pypi.org/project/propy3/)
-- `calculate_molecular_weight`: Calculate MW from Protein sequence. [Biopython](https://biopython.org/docs/1.76/api/Bio.SeqUtils.ProtParam.html)
+- `calculate_molecular_weight`: Calculate MW from the Protein sequence. [Biopython](https://biopython.org/docs/1.76/api/Bio.SeqUtils.ProtParam.html)
 - `calculate_isoelectric_point`: Uses the module IsoelectricPoint to calculate the pI of a protein. [Biopython](https://biopython.org/docs/1.76/api/Bio.SeqUtils.ProtParam.html)
 - `calculate_aromaticity`: Calculates the aromaticity value of a protein according to Lobry, 1994. It is simply the relative frequency of Phe+Trp+Tyr. [Biopython](https://biopython.org/docs/1.76/api/Bio.SeqUtils.ProtParam.html)
 - `calculate_instability_index`: Implementation of the method of Guruprasad et al. 1990 to test a protein for stability. Any value above 40 means the protein is unstable. [Biopython](https://biopython.org/docs/1.76/api/Bio.SeqUtils.ProtParam.html)
 
 
-With these fucntions, it was possible to extend the dataset to a total of 407 features.
+With these functions, it was possible to extend the dataset to a total of 407 features.
 
 Here it is possible to see a sample:
 
@@ -441,17 +441,17 @@ train_dataset.sample()
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C70).
 
-An embedding is a relativly low dimensional space into which can be translated into a high-dimensional 
-vectors. This type of preprocessing make it easier to do machine learning on large inputs like sparse vectors representing protein sequences.
+An embedding is a relatively low-dimensional space that can be translated into high-dimensional vectors. This type of preprocessing make it easier to do machine learning on large inputs like sparse vectors representing protein sequences.
 
 #### SGT Embedding
 
-This type of embedding embeds long patterns, in this case long protein patterns, into a finite dimension vector. The main advantage of SGT is that the long and short term patterns embedded in SGT can be tuned without any increase in the computation. [GitHub source](https://github.com/cran2367/sgt.git)
+This type of embedding embeds long patterns, in this case, long protein patterns, into a finite-dimension vector. The main advantage of SGT is that the long and short-term patterns embedded in SGT can be tuned without any increase in the computation. [GitHub source](https://github.com/cran2367/sgt.git)
 
 
-`kappa` --> Tuning parameter, kappa > 0, to change the extraction of long-term dependency. Higher the value the lesser the long-term dependency captured in the embedding. Typical values for kappa are 1, 5, 10.
+`kappa` --> Tuning parameter, kappa > 0, to change the extraction of long-term dependency. Higher the value the lesser the long-term dependency captured in the embedding. Typical values for kappa are 1, 5, and 10.
 
-`lengthsensitive` -->  Default false. This is set to true if the embedding of should have the information of the length of the sequence. If set to false then the embedding of two sequences with similar pattern but different lengths will be the same. lengthsensitive = false is similar to length-normalization.
+`lengthsensitive` -->  Default false. This is set to true if the embedding should have the information on the length of the sequence. If set to false then the embedding of two sequences with similar patterns but different lengths will be the same.
+lengthsensitive = false is similar to length-normalization.
 
 Here, it is possible to see a sample:
 
@@ -586,7 +586,7 @@ For this division, a permutation of the data was performed so that the data have
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C83).
 
-Unsupervised machine learning is a type of ML where we dont give any lables to the model. Instead, the model is only given input data and must find patterns or relationships in the data on its own. 
+Unsupervised machine learning is a type of ML where we don't give any labels to the model. Instead, the model is only given input data and must find patterns or relationships in the data on its own. 
 
 Some common unsupervised learning techniques include clustering and dimensionality reduction.
 
@@ -594,24 +594,24 @@ Some common unsupervised learning techniques include clustering and dimensionali
 
 ### 3.1 PCA
 
-Principal component analysis (PCA) serves as a dimentionality reduction method, often used to reduce dimensions of a large data sets, by transforming a large set of variables into a smaller one, reducing accuracy, but still contains most of the needed information.
+Principal component analysis (PCA) serves as a dimensionality reduction method, often used to reduce dimensions of large data sets, by transforming a large set of variables into a smaller one, reducing accuracy, but still containing most of the needed information.
 
 1. Standardize the range of continuous initial variables (Previously done)
 2. Compute the covariance matrix to identify correlations
 3. Compute the eigenvectors and eigenvalues of the covariance matrix to identify the principal components
-5. Recast the data along the principal components axes
+4. Recast the data along the axes of the principal component
 
 It was made PCA for the dataset with and without the embeddings.
 
 
-In here, it can be observed the results for PCA without embeddings:
+Here, it can be observed the results for PCA without embeddings:
 
 ![png](G4_final_files/G4_final_88_1.png)
 
 
 ![png](G4_final_files/G4_final_91_0.png)
 
-In both cases, PCA doesn't return a significant explained variance. In each case, the explained variance ration is around 22% with the explained variance being higher in the embeddings.
+In both cases, PCA doesn't return a significantly explained variance. In each case, the explained variance ratio is around 22% with the explained variance being higher in the embeddings.
 
 We can conclude that PCA is not effective.
 
@@ -625,8 +625,8 @@ PCA results can be observed in [this cell of the notebook](https://vscode.dev/gi
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C92).
 
-K-Means is a unsupervised machine learning algorithm used to group data into clusters based on similarities.
-The goal of K-means is to partition a dataset into a specified number of clusters (k) in a way that minimizes the within-cluster sum of squares. Here we present the following steps to run this algotithm:
+K-Means is an unsupervised machine learning algorithm used to group data into clusters based on similarities.
+The goal of K-means is to partition a dataset into a specified number of clusters (k) in a way that minimizes the within-cluster sum of squares. Here we present the following steps to run this algorithm:
 
 1. Randomly selecting k initial centroids (points in the dataset that represent the center of the clusters)
 2. Data point assigned to the cluster corresponding to the nearest centroid
@@ -640,15 +640,14 @@ This process is repeated until the centroids no longer change, or a maximum numb
     
 ![png](G4_final_files/G4_final_99_0.png)
 
-As we can see, the graph shows in the top a high inertia, meaning a high sum of squared distances.
-The quality of this clusters are low
+As we can see, the graph shows at the top a high inertia, meaning a high sum of squared distances. The quality of these clusters are low.
 
 
 ### t-SNE
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C100).
 
-t-SNE (t-Distributed Stochastic Neighbor Embedding) is used to project high-dimensional data into a lower-dimensional space, typically 2 or 3 dimensions.The goal is to preserve the pairwise distances between the data points in the lower-dimensional space as much as possible.
+t-SNE (t-Distributed Stochastic Neighbor Embedding) is used to project high-dimensional data into a lower-dimensional space, typically 2 or 3 dimensions. The goal is to preserve the pairwise distances between the data points in the lower-dimensional space as much as possible.
 
 1. Compute pairwise affinities between all data points in the high-dimensional space.
 2. Use these affinities to construct a probability distribution over the data points in the high-dimensional space.
@@ -680,9 +679,9 @@ This step can be observed in [this cell of the notebook](https://vscode.dev/gith
 
 The algorithm, through the recognition of patterns in the training data, will provide predictions in new unseen data. 
 
-SupervisedModelOptimization class was built under the utils/models.py file and uses several useful Supervised Machine Learning models in regression problems, which represents our current task. This class allows the fit of predefined models with tuning of the possible important hyper-parameters variations, by fit_model() method. Finally, a prediction with the tuned and fitted model may be proceeded with the predict() method (check class documentation for further details).
+SupervisedModelOptimization class was built under the utils/models.py file and uses several useful Supervised Machine Learning models in regression problems, which represents our current task. This class allows the fit of predefined models with the tuning of the possible important hyper-parameters variations, by the fit_model() method. Finally, a prediction with the tuned and fitted model may be proceeded with the predict() method (check class documentation for further details).
 
-It was pre-processed and verificated the mean and standard deviation of the train dataset.
+It was pre-processed and verified the mean and standard deviation of the train dataset.
 
 Herewith, the class SupervisedModelOptimization splits the data automatically by a 0.3 proportion if no assigned test data. Accordingly, we have 20086 training samples and 8609 testing samples. 
 
@@ -690,7 +689,7 @@ Herewith, the class SupervisedModelOptimization splits the data automatically by
 models = ["Linear Regression", "KNN", "Bagging",  "Random Forest", "Decision Tree"]
 ```
 
-The models fit a list of models and then predicted with `test` dataset, calculating the following scores:
+The models fit a list of models and are then predicted with `test` dataset, calculating the following scores:
 
 ```python
 for model, values in model_scores.items():
@@ -714,9 +713,9 @@ for model, values in model_scores.items():
       10.317757538697911
     
 
-We verify that the Root Mean Squared Error (RMSE) remained between 8 and 10 except for the Decision Tree Regressor, resulting in a 10.31 value error. 
+We verified that the Root Mean Squared Error (RMSE) remained between 8 and 10 except for the Decision Tree Regressor, resulting in a 10.31 value error. 
 
-Herewith, Supervised Machine Learning demonstrated better results than Unsupervised, but far from desired. Random Forest (RF) is the best model due to having the lowest RMSE (8.388), using the following parameters:  
+Herewith, Supervised Machine Learning demonstrated better results than Unsupervised, but far from desired. **Random Forest (RF) is the best model due to having the lowest RMSE (8.388)**, using the following parameters:  
     
     {'n_estimators': 100, 'max_depth': 50}.
 
@@ -745,7 +744,7 @@ Due to the unbalanced data verified by the output occurrences, we added the para
     Accuracy Score: 67.83496030711143
 
 
-We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relatively positive protein stability prediction accuracy from our model. Our biggest issue are the unbalanced data, which the parameter "class_weight" tries to overcome. However, a more balanced data may result in better predictions.
+We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relatively positive protein stability prediction accuracy from our model. Our biggest issue is the unbalanced data, which the parameter "class_weight" tries to overcome. However, more balanced data may result in better predictions.
 
 
 <a class="anchor" id="chapter5"></a>
@@ -754,13 +753,13 @@ We achieved a balanced accuracy score of 67.83%. Therefore, we obtained a relati
 
 This step can be observed in [this cell of the notebook](https://vscode.dev/github/alexesperanca/SIB_G4/blob/57dac7a3ed3e19c2ed20fce5e3e9a8d59230ecf9/G4_apresentação.ipynb#C127).
 
-Using deep learning methods similarly to chapter 4, comparing the results.
+Using deep learning methods similar to chapter 4, comparing the results.
 
-We created 3 deep learning models: FF (Feed Forward Neural Network), Conv1D (Convolution Neural Network) and LSTM (Long-Short Term Memory).
+We created 3 deep learning models: FF (Feed Forward Neural Network), Conv1D (Convolution Neural Network), and LSTM (Long-Short Term Memory).
 
-To setup our models, we added droupout layers/bathnormalization to avoid overfit problems. Then, we also used an earlystopping to stop our seach when our loss stayed the same.
+To set up our models, we added dropout layers/batch normalization to avoid overfitting problems. Then, we also used an early stopping to stop our search when our loss stayed the same.
 
-We verified the Root Mean Squared Error (RMSE) of  the best fully connected FFNN model.
+We verified the Root Mean Squared Error (RMSE) of the best fully connected FFNN model.
 
 ```python
 print("Best parameters: ", random_search_ff.best_params_)
@@ -771,7 +770,7 @@ print("FF rmse:", mean_squared_error(test_output, y_pred,squared=False))
     FF rmse: 11.819
 
 
-We verified the Root Mean Squared Error (RMSE) of  the best fully connected conv1D model.
+We verified the Root Mean Squared Error (RMSE) of the best fully connected conv1D model.
 
 ```python
 print("Best parameters: ", history.best_params_)
@@ -782,11 +781,11 @@ print("conv1D rmse:", mean_squared_error(test_output, y_pred,squared=False))
     conv1D rmse: 7.94
      
 
-Our LSTM model was the worst, giving a mse of 147. For the LSTM we stoped trying to improve this model for computation reasons, as it was taking 10+ hours to run, and the initial results of the model were the worst. 
+Our LSTM model was the worst, giving a mse of 147. For the LSTM we stopped trying to improve this model for computation reasons, as it was taking 10+ hours to run, and the initial results of the model were the worst. 
 
 Herewith, Deeplearning demonstrated better results than Unsupervised and Supervised ML, but far from desired.
 
-**Conv1d was the best model from all our analysis, having a rmse of 7.94**.
+**Conv1d was the best model from all our analyses, having a rmse of 7.94**.
 
 
 
